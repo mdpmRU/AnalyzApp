@@ -1,0 +1,78 @@
+﻿<Window x:Class="AnalyzApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnalyzApp" xmlns:models="clr-namespace:AnalyzApp.Models" d:DataContext="{d:DesignInstance Type=models:Channel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="543" Width="821" Background="#FF62D83A">
+    <Window.Resources>
+        <Style x:Key="BackGreen">
+            <Setter Property="Control.Background" Value="#FFB3D2AE" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFB0EFA3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20"
+                                Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Height="423" VerticalAlignment="Top" Margin="0,10,0,0">
+        <!--/listboxanal-->
+        <ListBox Grid.Column="0" ItemsSource="{Binding Analyzers}" Style="{StaticResource BackGreen}"
+SelectedItem="{Binding SelectedAnalyzer}" Margin="10,43,447,35" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Name}" />
+                        <TextBlock Text="{Binding Path=Type}" />
+                        <TextBlock Text="{Binding Path=MeasureInterval}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+
+        <StackPanel  Margin="428,44,22,9" DataContext="{Binding SelectedAnalyzer}">
+            <TextBlock Text="Выбранный элемент" />
+            <TextBlock Text="Название" />
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BackGreen}" />
+            <TextBlock Text="Тип" />
+            <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BackGreen}"  />
+            <TextBlock Text="Интервал измерения" />
+            <TextBox Text="{Binding MeasureInterval, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BackGreen}" />
+            <TextBlock Text="Каналы" />
+            <ListBox ItemsSource="{Binding Channels}" Height="100" SelectedItem="{Binding SelectedChannel}" Style="{StaticResource BackGreen}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBox FontSize="18" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Text="{Binding Path=IsHot, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button x:Name="RemCh" Content="Удалить Channel" Command="{Binding RemoveChannel}" CommandParameter="{Binding SelectedChannel}" Width="231" />
+            <Button x:Name="AddCh" Content="Добавить Channel" Command="{Binding AddChannel}" Width="231"/>
+        </StackPanel>
+        <Menu x:Name="menu1" Margin="0,-8,0,412" Background="#FF70D661">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" Command="{Binding OpenCommand}" />
+                <MenuItem Header="Сохранить" Command="{Binding SaveCommand}" />
+            </MenuItem>
+        </Menu>
+        <Button x:Name="AddAn" Content="Добавить Analyzer" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Command="{Binding AddAnalyzer}" BorderThickness="0,1,1,1" Visibility="Visible" Width="136"/>
+        <Button x:Name="RemAn" Content="Удалить Analyzer" HorizontalAlignment="Left" Margin="238,393,0,0" VerticalAlignment="Top" Command="{Binding RemoveAnalyzer}" CommandParameter="{Binding SelectedAnalyzer}" Width="136"/>
+    </Grid>
+</Window>
