@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace AnalyzApp.Models
 {
-    public class Channel: INotifyPropertyChanged
+    public class Channel
     {
         public string name;
         public bool isHot;
@@ -14,7 +14,7 @@ namespace AnalyzApp.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+
             }
         }
         public bool IsHot
@@ -23,15 +23,9 @@ namespace AnalyzApp.Models
             set
             {
                 isHot = value;
-                OnPropertyChanged("IsHot");
+
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
     }
 }

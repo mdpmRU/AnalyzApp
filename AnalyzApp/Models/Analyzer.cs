@@ -5,7 +5,7 @@ using AnalyzApp.Models;
 
 namespace AnalyzApp.Models
 {
-    public class Analyzer: INotifyPropertyChanged
+    public class Analyzer
     {
         private string name;
         private string type;
@@ -19,7 +19,6 @@ namespace AnalyzApp.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
             }
         }
         public string Type
@@ -28,7 +27,6 @@ namespace AnalyzApp.Models
             set
             {
                 type = value;
-                OnPropertyChanged("Type");
             }
         }
         public int MeasureInterval
@@ -37,7 +35,6 @@ namespace AnalyzApp.Models
             set
             {
                 measureInterval = value;
-                OnPropertyChanged("MeasureInterval");
             }
         }
 
@@ -47,7 +44,6 @@ namespace AnalyzApp.Models
             set
             {
                 channels = value;
-                OnPropertyChanged("Channels");
             }
         }
 
@@ -57,7 +53,6 @@ namespace AnalyzApp.Models
             set
             {
                 selectedChannel = value;
-                OnPropertyChanged("SelectedChannel");
             }
         }
 
@@ -101,12 +96,6 @@ namespace AnalyzApp.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
 
     }
 }
