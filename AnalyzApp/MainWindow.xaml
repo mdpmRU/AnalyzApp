@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnalyzApp" xmlns:models="clr-namespace:AnalyzApp.Models" d:DataContext="{d:DesignInstance Type=models:Channel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="543" Width="821" Background="#FF62D83A">
+        Title="MainWindow" Height="543" Width="821" Background="#FF186F0A">
     <Window.Resources>
         <Style x:Key="BackGreen">
             <Setter Property="Control.Background" Value="#FFB3D2AE" />
@@ -66,7 +66,7 @@ SelectedItem="{Binding SelectedAnalyzer}" Margin="10,43,447,35" >
             <Button x:Name="RemCh" Content="Удалить Channel" Command="{Binding RemoveChannel}" CommandParameter="{Binding SelectedChannel}" Width="231" />
             <Button x:Name="AddCh" Content="Добавить Channel" Command="{Binding AddChannel}" Width="231"/>
         </StackPanel>
-        <Menu x:Name="menu1" Margin="0,-8,0,412" Background="#FF70D661">
+        <Menu x:Name="menu1" Margin="0,-8,0,412" Style="{StaticResource BackGreen}">
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть" Command="{Binding OpenCommand}" />
                 <MenuItem Header="Сохранить" Command="{Binding SaveCommand}" />
