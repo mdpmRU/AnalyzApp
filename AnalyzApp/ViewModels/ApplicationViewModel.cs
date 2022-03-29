@@ -7,7 +7,7 @@ using System;
 
 namespace AnalyzApp.ViewModels
 {
-    public class ApplicationViewModel : INotifyPropertyChanged
+    public class ApplicationViewModel : ViewModelBase
     {
         IFileService fileService;
         IDialogService dialogService;
@@ -24,17 +24,6 @@ namespace AnalyzApp.ViewModels
                 OnPropertyChanged("SelectedAnalyzer");
             }
         }
-        //public ObservableCollection<Channel> Channels { get; set; }
-        //public Channel SelectedChannel
-        //{
-        //    get { return selectedChannel; }
-        //    set
-        //    {
-        //        selectedChannel = value;
-        //        OnPropertyChanged("SelectedChannel");
-        //    }
-        //}
-
 
         // команда открытия файла
         private RelayCommand openCommand;
@@ -129,11 +118,6 @@ namespace AnalyzApp.ViewModels
             this.fileService = fileService;
             Analyzers = new ObservableCollection<Analyzer>();
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+
     }
 }
