@@ -9,8 +9,7 @@ namespace AnalyzApp.ViewModels
 {
     public class ApplicationViewModel : ViewModelBase
     {
-        IFileService fileService;
-        IDialogService dialogService;
+    
 
         Analyzer selectedAnalyzer;
 
@@ -25,58 +24,7 @@ namespace AnalyzApp.ViewModels
             }
         }
 
-        // команда открытия файла
-        private RelayCommand openCommand;
-        public RelayCommand OpenCommand
-        {
-            get
-            {
-                return openCommand ??
-                  (openCommand = new RelayCommand(obj =>
-                  {
-                      try
-                      {
-                          if (dialogService.OpenFileDialog() == true)
-                          {
-                              var analysers = fileService.Open(dialogService.FilePath);
-                              Analyzers.Clear();
-                              foreach (var p in analysers)
-                                  Analyzers.Add(p);
-                              //dialogService.ShowMessage("Файл открыт");
-                          }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
-                      }
-                  }));
-            }
-        }
-        // команда сохранения файла
 
-        private RelayCommand saveCommand;
-        public RelayCommand SaveCommand
-        {
-            get
-            {
-                return saveCommand ??
-                  (saveCommand = new RelayCommand(obj =>
-                  {
-                      try
-                      {
-                          if (dialogService.SaveFileDialog() == true)
-                          {
-                              fileService.Save(dialogService.FilePath, Analyzers);
-                              //dialogService.ShowMessage("Файл сохранен");
-                          }
-                      }
-                      catch (Exception ex)
-                      {
-                          dialogService.ShowMessage(ex.Message);
-                      }
-                  }));
-            }
-        }
         //Кнопки для Analyzer 
         private RelayCommand addAnalyzer;
         public RelayCommand AddAnalyzer
@@ -112,11 +60,17 @@ namespace AnalyzApp.ViewModels
         }
         
         //////////////////////////////////////////////////////////
-        public ApplicationViewModel(IDialogService dialogService, IFileService fileService)
+        public ApplicationViewModel()
         {
-            this.dialogService = dialogService;
-            this.fileService = fileService;
             Analyzers = new ObservableCollection<Analyzer>();
+        }
+        public void ClearAnalyzers()
+        {
+            Analyzers.Clear();
+        }
+        public void AddAnalyzers(Analyzer analyzer)
+        {
+            Analyzers.Add(analyzer);
         }
 
     }

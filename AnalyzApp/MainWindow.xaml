@@ -68,8 +68,8 @@ SelectedItem="{Binding SelectedAnalyzer}" Margin="10,43,447,35" >
         </StackPanel>
         <Menu x:Name="menu1" Margin="0,-8,0,412" Style="{StaticResource BackGreen}">
             <MenuItem Header="Файл">
-                <MenuItem Header="Открыть" Command="{Binding OpenCommand}" />
-                <MenuItem Header="Сохранить" Command="{Binding SaveCommand}" />
+                <MenuItem Header="Открыть" x:Name="OpenFile" />
+                <MenuItem Header="Сохранить" x:Name="SaveFile" />
             </MenuItem>
         </Menu>
         <Button x:Name="AddAn" Content="Добавить Analyzer" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Command="{Binding AddAnalyzer}" BorderThickness="0,1,1,1" Visibility="Visible" Width="136"/>
