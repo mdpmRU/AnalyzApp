@@ -10,7 +10,7 @@ namespace AnalyzApp
 {
     public interface IFileService
     {
-        ObservableCollection<Analyzer> Open(string filename);
-        void Save(string filename, ObservableCollection<Analyzer> analyzersList);
+        List<Analyzer> Open(string filename);
+        void Save(string filename, List<Analyzer> analyzersList);
     }
 }

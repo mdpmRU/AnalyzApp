@@ -15,9 +15,9 @@ namespace AnalyzApp
 
     public class XMLFileService : IFileService
     {
-        public ObservableCollection<Analyzer> Open(string filename)
+        public List<Analyzer> Open(string filename)
         {
-            ObservableCollection<Analyzer> analyzers = new ObservableCollection<Analyzer>();//объявление коллекций
+            List<Analyzer> analyzers = new List<Analyzer>();//объявление коллекций
             XDocument doc = XDocument.Load(filename);//Загружаем
             XElement root = doc.Element("Analyzers");
             foreach (XElement analyzer in root.Elements("Analyzer"))
@@ -39,7 +39,7 @@ namespace AnalyzApp
             return analyzers;
         }
 
-        public void Save(string filename, ObservableCollection<Analyzer> analyzers)
+        public void Save(string filename, List<Analyzer> analyzers)
         {
             XDocument xdoc = new XDocument();//объявили, что [xml документ
             XElement root = new XElement("Analyzers");//

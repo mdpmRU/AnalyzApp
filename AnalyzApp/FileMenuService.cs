@@ -59,7 +59,7 @@ namespace AnalyzApp
                       {
                           if (dialogService.SaveFileDialog() == true)
                           {
-                              fileService.Save(dialogService.FilePath, viewModel.Analyzers);
+                              fileService.Save(dialogService.FilePath, viewModel.Analyzers.ToList());
                               //dialogService.ShowMessage("Файл сохранен");
                           }
                       }
