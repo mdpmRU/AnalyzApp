@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnalyzApp" xmlns:models="clr-namespace:AnalyzApp.Models" d:DataContext="{d:DesignInstance Type=models:Channel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="543" Width="821" Background="#FF186F0A">
+        Title="MainWindow" Height="588" Width="821" Background="#FF186F0A">
     <Window.Resources>
         <Style x:Key="BackGreen">
             <Setter Property="Control.Background" Value="#FFB3D2AE" />
@@ -27,10 +27,10 @@
         </Style>
     </Window.Resources>
 
-    <Grid Height="423" VerticalAlignment="Top" Margin="0,10,0,0">
+    <Grid Margin="0,10,0,0">
         <!--/listboxanal-->
         <ListBox Grid.Column="0" ItemsSource="{Binding Analyzers}" Style="{StaticResource BackGreen}"
-SelectedItem="{Binding SelectedAnalyzer}" Margin="10,43,447,35" >
+SelectedItem="{Binding SelectedAnalyzer}" Margin="10,44,0,47" HorizontalAlignment="Left" Width="364" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
@@ -44,7 +44,7 @@ SelectedItem="{Binding SelectedAnalyzer}" Margin="10,43,447,35" >
 
 
 
-        <StackPanel  Margin="428,44,22,9" DataContext="{Binding SelectedAnalyzer}">
+        <StackPanel  Margin="0,44,22,47" DataContext="{Binding SelectedAnalyzer}" HorizontalAlignment="Right" Width="371">
             <TextBlock Text="Выбранный элемент" />
             <TextBlock Text="Название" />
             <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BackGreen}" />
@@ -53,7 +53,7 @@ SelectedItem="{Binding SelectedAnalyzer}" Margin="10,43,447,35" >
             <TextBlock Text="Интервал измерения" />
             <TextBox Text="{Binding MeasureInterval, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BackGreen}" />
             <TextBlock Text="Каналы" />
-            <ListBox ItemsSource="{Binding Channels}" Height="100" SelectedItem="{Binding SelectedChannel}" Style="{StaticResource BackGreen}">
+            <ListBox ItemsSource="{Binding Channels}" Height="169" SelectedItem="{Binding SelectedChannel}" Style="{StaticResource BackGreen}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -66,13 +66,13 @@ SelectedItem="{Binding SelectedAnalyzer}" Margin="10,43,447,35" >
             <Button x:Name="RemCh" Content="Удалить Channel" Command="{Binding RemoveChannel}" CommandParameter="{Binding SelectedChannel}" Width="231" />
             <Button x:Name="AddCh" Content="Добавить Channel" Command="{Binding AddChannel}" Width="231"/>
         </StackPanel>
-        <Menu x:Name="menu1" Margin="0,-8,0,412" Style="{StaticResource BackGreen}">
+        <Menu x:Name="menu1" Margin="0,-8,0,0" Style="{StaticResource BackGreen}" Height="19" VerticalAlignment="Top">
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть" x:Name="OpenFile" />
                 <MenuItem Header="Сохранить" x:Name="SaveFile" />
             </MenuItem>
         </Menu>
-        <Button x:Name="AddAn" Content="Добавить Analyzer" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Command="{Binding AddAnalyzer}" BorderThickness="0,1,1,1" Visibility="Visible" Width="136"/>
-        <Button x:Name="RemAn" Content="Удалить Analyzer" HorizontalAlignment="Left" Margin="238,393,0,0" VerticalAlignment="Top" Command="{Binding RemoveAnalyzer}" CommandParameter="{Binding SelectedAnalyzer}" Width="136"/>
+        <Button x:Name="AddAn" Content="Добавить Analyzer" HorizontalAlignment="Left" Margin="10,0,0,14" Command="{Binding AddAnalyzer}" BorderThickness="0,1,1,1" Visibility="Visible" Width="136" Height="16" VerticalAlignment="Bottom"/>
+        <Button x:Name="RemAn" Content="Удалить Analyzer" HorizontalAlignment="Left" Margin="238,0,0,14" Command="{Binding RemoveAnalyzer}" CommandParameter="{Binding SelectedAnalyzer}" Width="136" Height="16" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
